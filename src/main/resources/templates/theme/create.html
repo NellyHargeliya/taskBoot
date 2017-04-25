@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task SpringBoot :: Create New Theme</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<div id="_theme_form">
+    <form method="post" th:action="@{/theme}">
+        <div class="form-group" >
+            <label for="_theme_name">Theme title</label>
+            <input type="text" class="form-control" name="themeName" placeholder="Input your theme" id="_theme_name"/>
+
+            <label for="_theme_option1">Option 1:</label>
+            <input type="text" class="form-control" name="option1" placeholder="Input the first option"
+                   id="_theme_option1"/>
+            <label for="_theme_option2">Option 2:</label>
+            <input type="text" class="form-control" name="option2" placeholder="Input the second option"
+                   id="_theme_option2"/>
+        </div>
+
+        <button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-send"></i> Submit
+        </button>
+    </form>
+
+</div>
+<script type="text/javascript" th:src="@{/js/app.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery-3.1.0.min.js}"></script>
+</body>
+</html>
