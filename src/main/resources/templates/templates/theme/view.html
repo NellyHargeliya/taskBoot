@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BootTask :: Open Themes</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script type="text/javascript" th:src="@{/js/app.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/app.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.1.0.min.js}"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-4" th:include="theme/create :: #_theme_form"></div>
+        <div class="col-lg-8">
+            <a th:href="@{/theme}">&larr; All themes</a>
+            <h1 th:style="${theme.resolveDate != null}?'text-decoration:line-through;':''">Theme #<span
+                    th:text="${theme.id}"></span>: <span th:text="${theme.themeName}"></span></h1>
+            <div>Created: <span th:text="${theme.createDate}"></span></div>
+            <br/>
+            <div>
+                <a th:if="${theme.resolveDate == null}" th:href="@{/theme/{id}/resolve(id=${theme.id})}">Resolve</a>
+                <a th:if="${theme.resolveDate != null}" th:href="@{/theme/{id}/reopen(id=${theme.id})}">Re-open</a>
+            </div>
+            <hr/>
+            <h3>Options:</h3>
+            <form action="/" id="searchForm">
+            <div class="list-group">
+                <a href="/theme" class="list-group-item list-group-item-info" name="quantity1" id="_theme_quantity1" onclick="plusVote1()" >
+                    <i class="glyphicon glyphicon-send"></i>
+                    <span th:text="${theme.option1}"></span>
+                    <span class="badge" th:text="${theme.quantity1}"></span>
+                </a>
+                <a href="/theme" class="list-group-item list-group-item-info" name="quantity2" id="_theme_quantity2" onclick="plusVote2()">
+                    <i class="glyphicon glyphicon-send"></i>
+                    <span th:text="${theme.option2}"></span>
+                    <span class="badge" th:text="${theme.quantity2}"></span>
+                </a>
+
+            </div>
+            </form>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

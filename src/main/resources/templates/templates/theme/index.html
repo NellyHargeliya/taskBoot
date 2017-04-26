@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BootTast :: Themes</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4" th:include="theme/create :: #_theme_form"></div>
+        <div class="col-lg-8">
+            <h1>Theme list
+                <small>
+                    <a th:if="!${all}" th:href="@{/theme(all=true)}">All</a>
+                    <a th:if="${all}" th:href="@{/theme}">Not resolved</a>
+                </small>
+            </h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Start date
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="theme : ${themes}">
+                    <td th:text="${theme.id}">ID</td>
+                    <td>
+                        <a th:style="${theme.resolveDate != null}?'text-decoration:line-through;':''"
+                           th:href="@{/theme/{id}/view(id=${theme.id})}" th:text="${theme.themeName}"></a>
+                    </td>
+                    <td th:text="${theme.createDate}">Opened</td>
+                    <td>
+
+                        <select ng-model="myVar">
+                            <option value="${theme.id}/opt1"><span th:text="${theme.option1}"></span></option>
+                            <option value="${theme.id}/opt2"><span th:text="${theme.option2}"></span></option>
+                        </select>
+                    </td>
+                    <td>
+                        <div ng-switch="myVar">
+                            <div ng-switch-when="${theme.id}/opt1">
+                                <span th:text="${theme.quantity1}"></span>
+                            </div>
+                            <div ng-switch-when="${theme.id}/opt2">
+                                <span th:text="${theme.quantity2}"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
